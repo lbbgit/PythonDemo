@@ -10,5 +10,10 @@ url = "http://image.baidu.com/search/index?tn=baiduimage&ipn=r&ct=201326592&cl=2
 data = urllib2.urlopen(url).read()
 data = data.decode('UTF-8')
 saveFile("baidu_image.ini", data)
-print "------------"
-print(data)
+#print "------------"
+#print(data)
+
+
+#f = open('/path/to/the/file.txt')
+f = open('baidu_image.ini')
+txt = f.read()
