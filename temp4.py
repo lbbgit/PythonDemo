@@ -47,6 +47,17 @@ def getImg(html):
         urllib.urlretrieve(imgurl,'R:\%s.jpg' %x)
         #urllib.urlretrieve(imgurl,'R:\\'+x+'.jpg')
         x+=1
-html = getHtml("https://tieba.baidu.com/p/4379053321?see_lz=1")
-print(html)
-print getImg(html)
+#html = getHtml("https://tieba.baidu.com/p/4379053321?see_lz=1")
+#print getImg(html)
+
+import re
+text = "“JGood is a handsome boy, he is cool, clever, and so on…” "
+regex = re.compile(r'\w*oo\w*')
+print regex.findall(text) #查找所有包含’oo’的单词
+
+# 1).re.I(re.IGNORECASE): 忽略大小写
+# 2).re.M(MULTILINE): 多行模式，改变’^’和’$’的行为
+# 3).re.S(DOTALL): 点任意匹配模式，改变’.’的行为
+# 4).re.L(LOCALE): 使预定字符类 \w \W \b \B \s \S 取决于当前区域设定
+# 5).re.U(UNICODE): 使预定字符类 \w \W \b \B \s \S \d \D 取决于unicode定义的字符属性
+# 6).re.X(VERBOSE): 详细模式。这个模式下正则表达式可以是多行，忽略空白字符，并可以加入注释
