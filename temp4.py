@@ -36,6 +36,7 @@ def getHtml(url):
 def getImg(html):
     reg = r'src="(.+?\.jpg)" pic_ext'    #正则表达式，得到图片地址
     reg = r'src="(.+?\.jpg)" '
+    reg = r'https://.[^\s]+?.jpg|https://.[^\s]+?.png'
     imgre = re.compile(reg)     #re.compile() 可以把正则表达式编译成一个正则表达式对象.
     imglist = re.findall(imgre,html)      #re.findall() 方法读取html 中包含 imgre（正则表达式）的    数据
     #把筛选的图片地址通过for循环遍历并保存到本地
@@ -43,7 +44,8 @@ def getImg(html):
     x = 0
     print(imglist)
     for imgurl in imglist:
-        urllib2.urlretrieve(imgurl,'R:\\%s.jpg' % x)
+        urllib.urlretrieve(imgurl,'R:\%s.jpg' %x)
+        #urllib.urlretrieve(imgurl,'R:\\'+x+'.jpg')
         x+=1
 html = getHtml("https://tieba.baidu.com/p/4379053321?see_lz=1")
 print(html)
