@@ -23,6 +23,11 @@ x={1,2,3,4}
 y={2,4,6}
 print x-y,x,y,y-x
 
+a="123xyz"
+print (a,a,a)
+print a,a,a
+
+
 
 #3
 import urllib2
