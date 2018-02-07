@@ -27,7 +27,38 @@ three = cursor.fetchall();
 for row in three:
     print (row)  # 打印所有结果
 
+
+
+#region
+
+#create Table,Insert One ,Insert Many
+cursor.execute("""create table tb_user(id number, name varchar2(50),password varchar(50),primary key(id))""")
+
+cursor.execute("""insert into tb_user values(1,'admin','password')""");
+param = {'id': 2, 'n': 'admin', 'p': 'password'}
+cursor.execute('insert into tb_user values(:id,:n,:p)', param);
+
+# 一次插入多条数据
+param = [{'id': 3, 'n': 'sanma', 'p': 'password3'}, {'id': 4, 'n': 'sihu', 'p': 'pass4ord4'},
+         {'id': 5, 'n': 'Wulon', 'p': 'password5'},
+         {'id': 6, 'n': 'Liuda', 'p': 'password6'}];
+cursor.executemany('insert into tb_user values(:id,:n,:p)', param);
+
+# 再一次插入多条数据
+param = [];
+for i in range(7, 11):  # [7,8,9,10]
+    param.append((i, 'user' + str(i), 'password' + str(i)))
+cursor.executemany('insert into tb_user values(:1,:2,:3)', param);
+
+print('条件查询')
+cursor.prepare("""select * from tb_user where id <= :id""")
+cursor.execute(None, {'id': 5})
+for row in cursor:  # 相当于fetchall()
+    print(row)
+# endregion
+
 cursor.close();
+conn.commit(); #不提交可是很好玩哦！
 conn.close();
 
 os.system("pause")
